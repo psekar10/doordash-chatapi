@@ -1,14 +1,21 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import {useState} from 'react';
+import { useForm } from "react-hook-form";
 import { Global, css } from '@emotion/react'
 import styled from '@emotion/styled';
 
 export default function Home() {
-  const [inputValue, setInputValue] = useState('');
-  const handleButtonClick = () => {
-    console.log('inputValue', inputValue);
+  const router = useRouter();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  // const [inputValue, setInputValue] = useState('');
+  const onSubmit = ({uname}) => {
+    console.log('uname', uname);
+    router.push({
+      pathname: '/room/1',
+      query: { uname: uname },
+    })
   }
-
   return (
     <>
   		<Global
@@ -27,19 +34,24 @@ export default function Home() {
           }
         `}
       />
-      <IndexContainer>
-        <Head>
-          <title>ChatAPI</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <InputWrapper 
-          type="text"
-          value={inputValue}
-          placeholder="Type your username..."
-          onChange={(e) => setInputValue(e.currentTarget.value)}
-        />
-        <JoinButtonWrapper onClick={handleButtonClick}>Join the DoorDash Chat!</JoinButtonWrapper>
-      </IndexContainer>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <IndexContainer>
+          <Head>
+            <title>ChatAPI</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <InputWrapper 
+            type="text"
+            name="uname"
+            // value={inputValue}
+            {...register("uname", { required: true })}
+            placeholder="Type your username..."
+            // onChange={(e) => setInputValue(e.currentTarget.value)}
+          />
+          <JoinButtonWrapper type="submit">Join the DoorDash Chat!</JoinButtonWrapper>
+          {errors.exampleRequired && <span style={{color:"red", marginTop:"10px"}}>This field is required</span>}
+        </IndexContainer>
+      </form>
     </>
   )
 }
