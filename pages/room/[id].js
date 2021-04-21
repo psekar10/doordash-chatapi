@@ -34,7 +34,17 @@ function RoomPage(props) {
 		}
 		getRooms()
 	}, [])
-
+	async function getRoomMessages(id) {
+		let messageResponse = await fetch(`http://localhost:8080/api/rooms/${id}/messages`);
+		if (!messageResponse.ok) {
+			throw new Error(`HTTP error! status: ${messageResponse.status}`);
+		}
+		let messageResult = await messageResponse.json();
+		if (messageResult.error || messageResult.status === "failed") {
+			throw new Error(`Fetch - Update failed. Please check console logs. ${messageResult.error}`);
+		}
+		setMessages(messageResult)
+	}
 	async function getRoomDetails(id) {
 		try {
 			let response = await fetch(`http://localhost:8080/api/rooms/${id}`);
@@ -45,17 +55,8 @@ function RoomPage(props) {
 			if (result.error || result.status === "failed") {
 				throw new Error(`Fetch - Update failed. Please check console logs. ${result.error}`);
 			}
-			let messageResponse = await fetch(`http://localhost:8080/api/rooms/${id}/messages`);
-			if (!messageResponse.ok) {
-				throw new Error(`HTTP error! status: ${messageResponse.status}`);
-			}
-			let messageResult = await messageResponse.json();
-			if (messageResult.error || messageResult.status === "failed") {
-				throw new Error(`Fetch - Update failed. Please check console logs. ${messageResult.error}`);
-			}
-			console.log('messageResult', messageResult)
 			setRoomDetails(result);
-			setMessages(messageResult)
+			getRoomMessages(id);
 		} catch(e) {
 			console.error(e);
 		}
@@ -138,7 +139,7 @@ function RoomPage(props) {
 								<p style={{margin: "0 0 1rem", fontSize:"2rem"}}>{roomDetails.name}</p>
 								{(roomDetails.users.length !== 0) && (
 									<div style={{display:"flex", alignItems:"center"}}>
-										<p style={{margin:"0"}}><span style={{color:"red"}}>{uname}</span>,</p>
+										<p style={{margin:"0", paddingRight:"5px"}}><span style={{color:"red"}}>{uname}</span>,</p>
 										<p style={{margin:"0"}}>
 											{roomDetails.users.join(', ')}
 										</p>
