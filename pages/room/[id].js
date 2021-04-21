@@ -92,7 +92,12 @@ function RoomPage(props) {
 			setInputValue('');
 		}
 	}
-	console.log('roomDetails', roomDetails);
+	if (roomDetails.length !==0 ) {
+		const index = roomDetails.users.indexOf(uname);
+		if (index > -1) {
+			roomDetails.users.splice(index, 1);
+		}
+	}
   return (
     <>
 		  <Global
