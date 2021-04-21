@@ -12,7 +12,7 @@ export default function Home() {
   const onSubmit = ({uname}) => {
     console.log('uname', uname);
     router.push({
-      pathname: '/room/1',
+      pathname: '/room',
       query: { uname: uname },
     })
   }
