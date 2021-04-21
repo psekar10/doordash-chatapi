@@ -12,18 +12,39 @@ import MainSectionFooter from '../components/MainSectionFooter';
 function RoomPage() {
 	const router = useRouter();
 	const uname = router.query.uname;
-
+	// useState Setup
 	const [roomDetails, setRoomDetails] = useState([]);
 	const [messages, setMessages] = useState([]);
 	const [inputValue, setInputValue] = useState('');
 	const [rooms, setRooms] = useState([]);
 	const messagesEndRef = useRef(null);
+	/**
+	 * Scroll to bottom function
+	 */
 	const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }
+	/**
+	 * useEffect Call - Scroll to the bottom 
+	 */
   useEffect(() => {
     scrollToBottom()
   }, [messages]);
+	/**
+	 * useEffect Call - Update the messages every 5 secs
+	 */
+  useEffect(() => {
+		let intervalID;
+		if (roomDetails.length !== 0) {
+			intervalID = (window.setInterval(getRoomMessages, 5000, roomDetails.id));
+		}
+		return () => {
+			clearInterval(intervalID)
+		}
+  }, [roomDetails]);
+	/**
+	 * useEffect - to get the rooms
+	 */
 	useEffect(() => {
 		async function getRooms() {
 			try {
@@ -126,7 +147,7 @@ function RoomPage() {
         `}
       />
       <Head>
-        <title>ROOM PAGE</title>
+        <title>ROOMS</title>
       </Head>
 			<div style={{display:"flex", flexDirection:"row", height:"100vh"}}>
 				<SideBarSection 
