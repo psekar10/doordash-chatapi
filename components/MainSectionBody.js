@@ -9,15 +9,15 @@ const MainSectionBody = ({uname, messages, messagesEndRef}) => {
 			{messages.length !== 0 ? messages.map((item, index) => {
 				const isUser = item.name === uname;
 				return (
-					<div key={index} style={{ margin:"25px", display:"flex", flexDirection:"column"}}>
-						<p style={{ backgroundColor: isUser ? "#ff1940" : "white", color: isUser ? "white" : "black", borderRadius:"30px", margin: isUser ? "0 0 10px auto" : "0 0 10px", padding: "15px", width:"50%"}}>{item.message}</p>
-						<p style={{margin: isUser ? "0 0 0 auto" : "0", color:"#707070"}}>{item.name}</p>
-					</div>
+					<MessageContainer key={index}>
+						<ParagraphMessage isUser={isUser}>{item.message}</ParagraphMessage>
+						<ParagraphName isUser={isUser}>{item.name}</ParagraphName>
+					</MessageContainer>
 				)
 			}) : (
 				<SvgWrapper>
 					<ChatFinder height="100px" width="100px"/>
-					<p style={{fontSize:"20px", color: "#792b2b"}}>Choose a chat room</p>
+					<p>Choose a chat room</p>
 				</SvgWrapper>
 			)}
 			<div ref={messagesEndRef} />
@@ -27,6 +27,10 @@ const MainSectionBody = ({uname, messages, messagesEndRef}) => {
 
 export default MainSectionBody;
 
+
+/**
+ * Styling
+ */
 const MainBody = styled.div`
 	flex: 1 1 0%;
 	background: #eff1f2;
@@ -37,5 +41,26 @@ const SvgWrapper = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100%
+	height: 100%;
+	p {
+		color: #792b2b;
+		font-size: 20px;
+	}
+`;
+const MessageContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin: 25px
+`;
+const ParagraphMessage = styled.p`
+	background-color: ${({ isUser }) => (isUser ? "#ff1940" : "white")};
+	color: ${({ isUser }) => (isUser ? "white" : "black")};
+	border-radius: 30px;
+	margin: ${({ isUser }) => (isUser ? "0 0 10px auto" : "0 0 10px")};
+	padding: 15px;
+	width: 50%;
+`;
+const ParagraphName = styled.p`
+	color: #707070;
+	margin: ${({ isUser }) => (isUser ? "0 0 0 auto" : "0")};
 `;

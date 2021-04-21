@@ -12,7 +12,7 @@ const MainSectionFooter = ({inputValue, setInputValue, roomDetails, postMessages
 					placeholder="Type a message..." 
 					type="text"
 				/>
-				<a style={{cursor: (inputValue)? "pointer" : "not-allowed", color:"#4a90e2", fontWeight:"700"}} onClick={inputValue ? () => postMessages(roomDetails.id) : (e) => e.preventDefault()}>Send</a>
+				<AnchorWrapper inputValue={inputValue} onClick={inputValue ? () => postMessages(roomDetails.id) : (e) => e.preventDefault()}>Send</AnchorWrapper>
 			</>
 			) : (
 				<p>This is developed by Parthipan Sekar</p>
@@ -22,6 +22,10 @@ const MainSectionFooter = ({inputValue, setInputValue, roomDetails, postMessages
 }
 
 export default MainSectionFooter;
+
+/**
+ * Stylings
+ */
 
 const InputWrapper = styled.input`
   padding: 15px 20px;
@@ -38,4 +42,9 @@ const MainFooter = styled.div`
 	padding: 30px;
 	border-top: 1px solid lightgray;
 	box-shadow: 1px 3px 10px 0px #d0d0d0;
+`;
+const AnchorWrapper = styled.a`
+	cursor: ${({ inputValue }) => (inputValue ? "pointer" : "not-allowed")};
+	color: #4a90e2;
+	font-weight: 700;
 `;
