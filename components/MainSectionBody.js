@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import ChatFinder from '../assets/chatfinder';
 
-const MainSectionBody = ({uname, messages}) => {
+const MainSectionBody = ({uname, messages, messagesEndRef}) => {
   return (
 		<MainBody>
 			{messages.length !== 0 ? messages.map((item, index) => {
@@ -20,6 +20,7 @@ const MainSectionBody = ({uname, messages}) => {
 					<p style={{fontSize:"20px", color: "#792b2b"}}>Choose a chat room</p>
 				</SvgWrapper>
 			)}
+			<div ref={messagesEndRef} />
 		</MainBody>
 	)
 }

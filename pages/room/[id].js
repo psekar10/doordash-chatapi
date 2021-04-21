@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router'
-import {useState, useEffect} from "react";
+import {useState, useEffect, useRef} from "react";
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -16,8 +16,14 @@ function RoomPage(props) {
 	const [roomDetails, setRoomDetails] = useState([]);
 	const [messages, setMessages] = useState([]);
 	const [inputValue, setInputValue] = useState('');
-	const [rooms, setRooms] = useState([])
-
+	const [rooms, setRooms] = useState([]);
+	const messagesEndRef = useRef(null);
+	const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+  }
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages]);
 	useEffect(() => {
 		async function getRooms() {
 			try {
@@ -137,6 +143,7 @@ function RoomPage(props) {
 					<MainSectionBody 
 						uname={uname} 
 						messages={messages}
+						messagesEndRef={messagesEndRef}
 					/>
 					<MainSectionFooter
 						inputValue={inputValue} 
