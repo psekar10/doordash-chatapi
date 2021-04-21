@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import {useState} from 'react';
 import { useForm } from "react-hook-form";
-import { Global, css } from '@emotion/react'
+import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export default function Home() {
