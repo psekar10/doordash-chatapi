@@ -79,7 +79,7 @@ const InputWrapper = styled.input({
 // Button styling
 const JoinButtonWrapper = styled.button({
   padding: "15px",
-  background: "red",
+  background: "#ff1940",
   color: "white",
   borderRadius: "3px",
   border: 0,

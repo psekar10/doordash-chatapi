@@ -30,7 +30,7 @@ const SideBarConatiner = styled.div`
 	flex-direction: column;
 	min-width: 20rem;
 	height: 100vh;
-	background-color: red;
+	background-color: #ff1940;
 	color: white;
 `;
 
@@ -47,10 +47,10 @@ const UnorderedList = styled.ul`
 `;
 // Input wrapper styling
 const ListWrapper = styled.li`
-	background-color: ${({ selected }) => (selected ? "#710101" : "red")};
+	background-color: ${({ selected }) => (selected ? "#800d20" : "#ff1940")};
   padding: 1.5rem 1rem 1.5rem 2rem;
 	cursor: pointer;
 	&:hover {
-		background-color: #ad0404;
+		background-color: #ce0023;
 	}
 `;

@@ -9,7 +9,7 @@ const MainSectionHeader = ({uname, roomDetails}) => {
 					<p style={{margin: "0 0 1rem", fontSize:"2rem"}}>{roomDetails.name}</p>
 					{(roomDetails.users.length !== 0) && (
 						<div style={{display:"flex", alignItems:"center"}}>
-							<p style={{margin:"0", paddingRight:"5px"}}><span style={{color:"red"}}>{uname}</span>,</p>
+							<p style={{margin:"0", paddingRight:"5px"}}><span style={{color:"#ff1940"}}>{uname}</span>,</p>
 							<p style={{margin:"0"}}>
 								{roomDetails.users.join(', ')}
 							</p>
@@ -34,5 +34,5 @@ const MainHeader = styled.div`
 	border-bottom: 1px solid lightgray;
 	box-shadow: 1px 3px 10px 0px #d0d0d0;
 	min-height: 137px;
-	color: #a09b9b;
+	color: #696969;
 `;
