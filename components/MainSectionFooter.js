@@ -12,7 +12,7 @@ const MainSectionFooter = ({inputValue, setInputValue, roomDetails, postMessages
 					placeholder="Type a message..." 
 					type="text"
 				/>
-				<a style={{cursor: (inputValue)? "pointer" : "not-allowed"}} onClick={inputValue ? () => postMessages(roomDetails.id) : (e) => e.preventDefault()}>Send</a>
+				<a style={{cursor: (inputValue)? "pointer" : "not-allowed", color:"#4a90e2", fontWeight:"700"}} onClick={inputValue ? () => postMessages(roomDetails.id) : (e) => e.preventDefault()}>Send</a>
 			</>
 			) : (
 				<p>This is developed by Parthipan Sekar</p>
