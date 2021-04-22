@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-const Sidebar = ({uname, rooms, roomDetails, getRoomDetails}) => {
+const Sidebar = ({uname, rooms, roomDetails, getRoomDetails, minutes}) => {
   return (
 		<SideBarConatiner>
 			<HeaderContainer>
 				<p style={{margin:"0 0 5px", fontSize:"1.5rem"}}>{uname}</p>
-				<p style={{margin:"0", fontSize:"0.875rem"}}>Online for 12 minutes</p>
+				<p style={{margin:"0", fontSize:"0.875rem"}}>Online for {minutes} minutes</p>
 			</HeaderContainer>
 			<UnorderedList>
 				{rooms.length !==0 && rooms.map((room) => {
@@ -29,6 +29,7 @@ const SideBarConatiner = styled.div`
 	display: flex;
 	flex-direction: column;
 	min-width: 20rem;
+	width: 20rem;
 	height: 100vh;
 	background-color: #ff1940;
 	color: white;

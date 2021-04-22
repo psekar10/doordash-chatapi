@@ -10,11 +10,9 @@ export default function Home() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   // const [inputValue, setInputValue] = useState('');
   const onSubmit = ({uname}) => {
-    console.log('uname', uname);
-    router.push({
-      pathname: '/room',
-      query: { uname: uname },
-    })
+    window.localStorage.setItem('uname', uname);
+    window.localStorage.setItem('loginTime', Date.now());
+    router.push('/room')
   }
   return (
     <>

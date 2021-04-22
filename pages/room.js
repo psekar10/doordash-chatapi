@@ -11,12 +11,14 @@ import MainSectionFooter from '../components/MainSectionFooter';
 
 function RoomPage() {
 	const router = useRouter();
-	const uname = router.query.uname;
+	const uname = global.window && global.window.localStorage.getItem('uname');
+	const loginTime = global.window && global.window.localStorage.getItem('loginTime');
 	// useState Setup
 	const [roomDetails, setRoomDetails] = useState([]);
 	const [messages, setMessages] = useState([]);
 	const [inputValue, setInputValue] = useState('');
 	const [rooms, setRooms] = useState([]);
+	const [minutes, setMinutes] = useState(0)
 	const messagesEndRef = useRef(null);
 	/**
 	 * Scroll to bottom function
@@ -24,6 +26,18 @@ function RoomPage() {
 	const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }
+	const updateTime = () => {
+		var diff = Math.abs(Date.now() - loginTime);
+		var minutes = Math.floor((diff/1000)/60);
+		setMinutes(minutes)
+	}
+	// Redirect to Index page if no uname is set
+	useEffect(()=> {
+		if (!uname) {
+			router.push('/')
+		}
+		updateTime();
+	}, [uname])
 	/**
 	 * useEffect Call - Scroll to the bottom 
 	 */
@@ -73,7 +87,8 @@ function RoomPage() {
 		if (messageResult.error || messageResult.status === "failed") {
 			throw new Error(`Fetch - Update failed. Please check console logs. ${messageResult.error}`);
 		}
-		setMessages(messageResult)
+		setMessages(messageResult);
+		updateTime();
 	}
 	async function getRoomDetails(id) {
 		try {
@@ -154,6 +169,7 @@ function RoomPage() {
 					uname={uname} 
 					rooms={rooms} 
 					roomDetails={roomDetails}
+					minutes={minutes}
 					getRoomDetails={getRoomDetails}
 				/>
 				<MainSection>
