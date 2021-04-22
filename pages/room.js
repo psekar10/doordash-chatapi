@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import {useState, useEffect, useRef} from "react";
 import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
-
+// JS COMPONENTS
 import SideBarSection from '../components/Sidebar';
 import MainSectionHeader from '../components/MainSectionHeader';
 import MainSectionBody from '../components/MainSectionBody';
@@ -26,12 +26,17 @@ function RoomPage() {
 	const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }
+	/**
+	 * Update Online time
+	 */
 	const updateTime = () => {
 		var diff = Math.abs(Date.now() - loginTime);
 		var minutes = Math.floor((diff/1000)/60);
 		setMinutes(minutes)
 	}
-	// Redirect to Index page if no uname is set
+	/**
+	 * useEffect Call - Redirect to Index page if no uname is set
+	 */
 	useEffect(()=> {
 		if (!uname) {
 			router.push('/')
@@ -78,6 +83,10 @@ function RoomPage() {
 		}
 		getRooms()
 	}, [])
+	/**
+	 * Function to get the messages of the specific room
+	 * @param {*} id 
+	 */
 	async function getRoomMessages(id) {
 		let messageResponse = await fetch(`http://localhost:8080/api/rooms/${id}/messages`);
 		if (!messageResponse.ok) {
@@ -90,6 +99,10 @@ function RoomPage() {
 		setMessages(messageResult);
 		updateTime();
 	}
+	/**
+	 * Function to get the details of a specific room
+	 * @param {*} id 
+	 */
 	async function getRoomDetails(id) {
 		try {
 			let response = await fetch(`http://localhost:8080/api/rooms/${id}`);
@@ -106,6 +119,10 @@ function RoomPage() {
 			console.error(e);
 		}
 	}
+	/**
+	 * Function to post the messages
+	 * @param {*} id 
+	 */
 	async function postMessages(id) {
 		// Headers
 		let myHeaders = new Headers();
@@ -136,6 +153,7 @@ function RoomPage() {
 			setInputValue('');
 		}
 	}
+	// This is a logic to remove the username from the list. this relects in the MainSection Header details
 	if (roomDetails.length !==0 ) {
 		const index = roomDetails.users.indexOf(uname);
 		if (index > -1) {
@@ -165,6 +183,7 @@ function RoomPage() {
         <title>ROOMS</title>
       </Head>
 			<div style={{display:"flex", flexDirection:"row", height:"100vh"}}>
+				{/* Side Bar */}
 				<SideBarSection 
 					uname={uname} 
 					rooms={rooms} 
@@ -173,15 +192,18 @@ function RoomPage() {
 					getRoomDetails={getRoomDetails}
 				/>
 				<MainSection>
+					{/* This section is the main header with the Room Name and the users */}
 					<MainSectionHeader 
 						uname={uname} 
 						roomDetails={roomDetails}
 					/>
+					{/* This section is the main body with the chat messages */}
 					<MainSectionBody 
 						uname={uname} 
 						messages={messages}
 						messagesEndRef={messagesEndRef}
 					/>
+					{/* This section is the main footer with the input details */}
 					<MainSectionFooter
 						inputValue={inputValue} 
 						setInputValue={setInputValue} 
@@ -196,6 +218,9 @@ function RoomPage() {
 
 export default RoomPage;
 
+/**
+ * STYLING
+ */
 const MainSection = styled.div`
 	display: flex;
 	flex-direction: column;
