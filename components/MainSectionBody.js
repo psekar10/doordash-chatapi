@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
-
+// SVG
 import ChatFinder from '../assets/chatfinder';
 
+/**
+ *  This is a component for the Main Section Body
+ */
 const MainSectionBody = ({uname, messages, messagesEndRef}) => {
   return (
 		<MainBody>

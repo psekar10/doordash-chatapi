@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+/**
+ *  This is a component for the Main Section Footer
+ */
 const MainSectionFooter = ({inputValue, setInputValue, roomDetails, postMessages}) => {
   return (
 		<MainFooter>
@@ -26,7 +29,6 @@ export default MainSectionFooter;
 /**
  * Stylings
  */
-
 const InputWrapper = styled.input`
   padding: 15px 20px;
 	margin-right: 25px;

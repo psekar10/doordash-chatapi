@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+/**
+ *  This is a component for the Main Section Header
+ */
 const MainSectionHeader = ({uname, roomDetails}) => {
   return (
 		<MainHeader>

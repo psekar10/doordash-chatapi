@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+/**
+ *  This is a component for the Sidebar
+ */
 const Sidebar = ({uname, rooms, roomDetails, getRoomDetails, minutes}) => {
   return (
 		<SideBarConatiner>
@@ -34,19 +37,16 @@ const SideBarConatiner = styled.div`
 	background-color: #ff1940;
 	color: white;
 `;
-
 // header
 const HeaderContainer = styled.div`
 	padding: 2.5rem 2rem;
 `;
-
 // unordered List wrapper
 const UnorderedList = styled.ul`
 	list-style: none;
 	padding: 0;
 	margin: 0;
 `;
-// Input wrapper styling
 const ListWrapper = styled.li`
 	background-color: ${({ selected }) => (selected ? "#800d20" : "#ff1940")};
   padding: 1.5rem 1rem 1.5rem 2rem;

@@ -8,11 +8,10 @@ import styled from '@emotion/styled';
 export default function Home() {
   const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  // const [inputValue, setInputValue] = useState('');
   const onSubmit = ({uname}) => {
     window.localStorage.setItem('uname', uname);
     window.localStorage.setItem('loginTime', Date.now());
-    router.push('/room')
+    router.push('/room');
   }
   return (
     <>
@@ -41,13 +40,11 @@ export default function Home() {
           <InputWrapper 
             type="text"
             name="uname"
-            // value={inputValue}
             {...register("uname", { required: true })}
             placeholder="Type your username..."
-            // onChange={(e) => setInputValue(e.currentTarget.value)}
           />
           <JoinButtonWrapper type="submit">Join the DoorDash Chat!</JoinButtonWrapper>
-          {errors.exampleRequired && <span style={{color:"red", marginTop:"10px"}}>This field is required</span>}
+          {errors.uname && <span style={{color:"red", marginTop:"10px"}}>Please type in a user name</span>}
         </IndexContainer>
       </form>
     </>
