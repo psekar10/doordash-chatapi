@@ -152,6 +152,14 @@ function RoomPage() {
 			setInputValue('');
 		}
 	}
+	/**
+	 *  Function to handle Keypress for input in room page
+	 */
+	const handleKeyPress = (e) => {
+		if(e.key === 'Enter'){
+			postMessages(roomDetails.id)
+		}
+	}
 	// This is a logic to remove the username from the list. this relects in the MainSection Header details
 	if (roomDetails.length !==0 ) {
 		const index = roomDetails.users.indexOf(uname);
@@ -207,6 +215,7 @@ function RoomPage() {
 						inputValue={inputValue} 
 						setInputValue={setInputValue} 
 						roomDetails={roomDetails} 
+						handleKeyPress={handleKeyPress}
 						postMessages={postMessages}
 					/>
 				</MainSection>

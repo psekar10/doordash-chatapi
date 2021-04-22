@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 /**
  *  This is a component for the Main Section Footer
  */
-const MainSectionFooter = ({inputValue, setInputValue, roomDetails, postMessages}) => {
+const MainSectionFooter = ({inputValue, setInputValue, roomDetails, postMessages, handleKeyPress}) => {
   return (
 		<MainFooter>
 			{roomDetails.length !== 0 ? (
@@ -13,6 +13,7 @@ const MainSectionFooter = ({inputValue, setInputValue, roomDetails, postMessages
 					value={inputValue}
 					name="inputValue"
 					onChange={(e)=>setInputValue(e.currentTarget.value)}
+					onKeyPress={handleKeyPress}
 					placeholder="Type a message..." 
 					type="text"
 				/>
