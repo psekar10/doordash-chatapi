@@ -11,6 +11,7 @@ const MainSectionFooter = ({inputValue, setInputValue, roomDetails, postMessages
 			<>
 				<InputWrapper 
 					value={inputValue}
+					name="inputValue"
 					onChange={(e)=>setInputValue(e.currentTarget.value)}
 					placeholder="Type a message..." 
 					type="text"
