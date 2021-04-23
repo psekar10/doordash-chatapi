@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import {useState} from 'react';
 import { useForm } from "react-hook-form";
-import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export default function Home() {
@@ -15,28 +14,19 @@ export default function Home() {
   }
   return (
     <>
-  		<Global
-        styles={css`
-          html,
-          body {
-            padding: 0;
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-              Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-              sans-serif;
-          }
-
-          * {
-            box-sizing: border-box;
-          }
-        `}
-      />
+      <Head>
+        <title>ChatAPI | Login</title>
+        <link rel="canonical" href="" />
+        <meta name="description" content="" />
+        <meta id="og-title" property="og:title" content=""/>
+        <meta id="og-url" property="og:url" content=""/>
+        <meta id="og-description" property="og:description" content=""/>
+        <meta id="twitter-title" name="twitter:title" content=""/>
+        <meta id="twitter-url" name="twitter:url" content="" />
+        <meta id="twitter-description" name="twitter:description" content="" />
+      </Head>
       <form onSubmit={handleSubmit(onSubmit)}>
         <IndexContainer>
-          <Head>
-            <title>ChatAPI</title>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
           <InputWrapper 
             type="text"
             name="uname"

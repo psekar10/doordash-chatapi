@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router'
 import {useState, useEffect, useRef} from "react";
-import { Global, css } from '@emotion/react';
 import styled from '@emotion/styled';
 // JS COMPONENTS
 import SideBarSection from '../components/Sidebar';
@@ -169,25 +168,16 @@ function RoomPage() {
 	}
   return (
     <>
-		  <Global
-        styles={css`
-          html,
-          body {
-            padding: 0;
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-              Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-              sans-serif;
-						overflow: hidden;
-          }
-
-          * {
-            box-sizing: border-box;
-          }
-        `}
-      />
       <Head>
-        <title>ROOMS</title>
+        <title>ChatAPI | ROOMS</title>
+				<link rel="canonical" href="" />
+        <meta name="description" content="" />
+        <meta id="og-title" property="og:title" content=""/>
+        <meta id="og-url" property="og:url" content=""/>
+        <meta id="og-description" property="og:description" content=""/>
+        <meta id="twitter-title" name="twitter:title" content=""/>
+        <meta id="twitter-url" name="twitter:url" content="" />
+        <meta id="twitter-description" name="twitter:description" content="" />
       </Head>
 			<div style={{display:"flex", flexDirection:"row", height:"100vh"}}>
 				{/* Side Bar */}
