@@ -17,7 +17,7 @@ export default function Home() {
       <Head>
         <title>ChatAPI | Login</title>
         <link rel="canonical" href="" />
-        <meta name="description" content="" />
+        <meta name="description" content="Login" />
       </Head>
       <form onSubmit={handleSubmit(onSubmit)}>
         <IndexContainer>

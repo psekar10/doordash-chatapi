@@ -171,7 +171,7 @@ function RoomPage() {
       <Head>
         <title>ChatAPI | ROOMS</title>
 				<link rel="canonical" href="" />
-        <meta name="description" content="" />
+        <meta name="description" content="Room" />
       </Head>
 			<div style={{display:"flex", flexDirection:"row", height:"100vh"}}>
 				{/* Side Bar */}
