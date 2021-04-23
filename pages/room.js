@@ -86,16 +86,20 @@ function RoomPage() {
 	 * @param {*} id 
 	 */
 	async function getRoomMessages(id) {
-		let messageResponse = await fetch(`http://localhost:8080/api/rooms/${id}/messages`);
-		if (!messageResponse.ok) {
-			throw new Error(`HTTP error! status: ${messageResponse.status}`);
+		try {
+			let messageResponse = await fetch(`http://localhost:8080/api/rooms/${id}/messages`);
+			if (!messageResponse.ok) {
+				throw new Error(`HTTP error! status: ${messageResponse.status}`);
+			}
+			let messageResult = await messageResponse.json();
+			if (messageResult.error || messageResult.status === "failed") {
+				throw new Error(`Fetch - Update failed. Please check console logs. ${messageResult.error}`);
+			}
+			setMessages(messageResult);
+			updateTime();
+		} catch(e) {
+			console.error(e);
 		}
-		let messageResult = await messageResponse.json();
-		if (messageResult.error || messageResult.status === "failed") {
-			throw new Error(`Fetch - Update failed. Please check console logs. ${messageResult.error}`);
-		}
-		setMessages(messageResult);
-		updateTime();
 	}
 	/**
 	 * Function to get the details of a specific room
