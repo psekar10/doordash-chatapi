@@ -172,12 +172,6 @@ function RoomPage() {
         <title>ChatAPI | ROOMS</title>
 				<link rel="canonical" href="" />
         <meta name="description" content="" />
-        <meta id="og-title" property="og:title" content=""/>
-        <meta id="og-url" property="og:url" content=""/>
-        <meta id="og-description" property="og:description" content=""/>
-        <meta id="twitter-title" name="twitter:title" content=""/>
-        <meta id="twitter-url" name="twitter:url" content="" />
-        <meta id="twitter-description" name="twitter:description" content="" />
       </Head>
 			<div style={{display:"flex", flexDirection:"row", height:"100vh"}}>
 				{/* Side Bar */}
