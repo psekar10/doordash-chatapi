@@ -29,8 +29,8 @@ function RoomPage() {
 	 * Update Online time
 	 */
 	const updateTime = () => {
-		var diff = Math.abs(Date.now() - loginTime);
-		var minutes = Math.floor((diff/1000)/60);
+		let diff = Math.abs(Date.now() - loginTime);
+		let minutes = Math.floor((diff/1000)/60);
 		setMinutes(minutes)
 	}
 	/**
